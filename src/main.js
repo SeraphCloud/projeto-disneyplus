@@ -1,7 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
     const buttons = document.querySelectorAll('[data-tab-button]');
     const tabContainer = document.querySelector('[data-tab-id]');
+    const questions = document.querySelectorAll('[data-faq-question');
+
+    const heroSection = document.querySelector('.hero');
+    const heroHeight = heroSection.clientHeight;
+
+    window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY
+
+        if (scrollPosition < heroHeight) {
+            hideHeader();
+        } else {
+            showHeader();
+        }
+    })
     
+    // Programação das abas da sessão de atrações
     for (let i = 0; i < buttons.length; i++ ) {
         buttons[i].addEventListener('click', function(botao) {
             const targetTab = botao.target.dataset.tabButton;
@@ -13,7 +28,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
         })
     }
+
+    // Seção FAQ, accordion
+    for (let i = 0; i < questions.length; i++) {
+        questions[i].addEventListener('click', openCloseAnswer)
+    }
 })
+
+function hideHeader() {
+    const header = document.querySelector('header');
+    header.classList.add('header--is-hidden');
+
+}
+
+function showHeader() {
+    const header = document.querySelector('header');
+    header.classList.remove('header--is-hidden');
+
+}
+
+function openCloseAnswer(element) {
+    const classe = 'faq__questions__item--active';
+    const parent = element.target.parentNode;
+
+    parent.classList.toggle(classe);
+}
 
 function removeActiveButton() {
     const buttons = document.querySelectorAll('[data-tab-button]');

@@ -3,6 +3,12 @@
 @use 'shows';
 @use 'plans';
 @use 'devices';
+@use 'faq';
+@use 'footer';
+@use 'header';
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
 
 @font-face {
   font-family: Avenir;
@@ -70,18 +76,47 @@ body {
 }
 
 .button {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 60px;
     font-size: 18px;
     color: variables.$secondaryTextColor;
-    background-color: #6421FF;
+    background-color: variables.$primaryButtonBg;
     border-radius: 4px;
     text-transform: uppercase;
-    margin-top: 2vw;
-    margin-bottom: 8px;
+    text-decoration: none;
     cursor: pointer;
     border: none;
+    padding: 8px 14px;
+    letter-spacing: 1px;
+    border: 1px solid variables.$primaryButtonBg;
+
+    &:hover {
+      background-color: color.scale(variables.$primaryButtonBg, $lightness: 3%);
+    }
+
+
+    &--secondary {
+      background-color: variables.$secondaryButtonBg;
+      border-color: variables.$secondaryButtonBg;
+
+      &:hover {
+        background-color: color.scale(variables.$secondaryButtonBg, $lightness: 3%);
+      }
+    }
+
+    &--dark {
+        background-color: rgba(variables.$darkButtonBg, 0.8);
+        border-color: variables.$secondaryTextColor;
+
+        &:hover {
+          background-color: variables.$secondaryTextColor;
+          color: variables.$darkButtonBg;
+          transition: ease-in-out 0.3s;
+        }
+    }
 }
 
 .image-text-section {
